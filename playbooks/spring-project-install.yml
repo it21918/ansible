@@ -1,9 +1,9 @@
 ---
-- hosts: webserver,deploymentservers
+- hosts: webserver
 
   vars:
     app_dir: "{{user_dir}}/django-project"
-    git_repo_url: "git@github.com:tsadimas/django3-sampe-project.git"
+    git_repo_url: "https://github.com/tsadimas/django3-sampe-project.git"
     git_repo_branch: "main"
 
   tasks:
@@ -24,11 +24,7 @@
 
   - name: print user name
     debug:
-      msg: "login user is {{login_user}}"
-
-  - name: print user dir
-    debug:
-      msg: "login dir is {{user_dir}}"
+      msg: "login user is {{login_user}}"  
 
   - name: ensure github.com is a known host
     lineinfile:
@@ -59,20 +55,16 @@
     with_items:
       - "{{django.env | dict2items}}"
 
-  - name: Get my public IP
-    ipify_facts:
-
-  - debug: var=ipify_public_ip
-
-  # - name: print ip
-  #   debug:
-  #     msg: "ALLOWED_HOSTS={{ansible_all_ipv4_addresses}}"
+  
+  - name: print ip
+    debug:
+      msg: "ALLOWED_HOSTS={{ansible_all_ipv4_addresses}}"
 
   - name: add ip in django ALLOWED_HOSTS
     lineinfile:
       dest: "{{app_dir}}/myproject/myproject/settings.py"
       regexp: "^ALLOWED_HOSTS ="
-      line: "ALLOWED_HOSTS = ['{{ipify_public_ip}}', 'localhost', '127.0.0.1']"
+      line: "ALLOWED_HOSTS = {{ansible_all_ipv4_addresses}}"
       state: present
 
   - name: install and activate virtual environment
@@ -107,20 +99,20 @@
         - makemigrations
         - migrate
 
+    
 
-
-
-
+    
+    
     - name: copy django service file
       template:
         src: ../files/django/gunicorn.service.j2
         dest: "/etc/systemd/system/gunicorn.service"
       become: yes
       become_user: root
-
+      
 
     - name: ensure gunicorn service started
-      service:
+      service: 
         name: gunicorn
         state: started
         enabled: yes
@@ -152,8 +144,8 @@
       with_items:
         - ../files/certs/server.crt
         - ../files/certs/server.key
-
-
+      
+  
     - name: enable django site in nginx
       file:
         src: "/etc/nginx/sites-available/django"
@@ -173,7 +165,7 @@
         path: /etc/nginx/sites-enabled/default
         state: absent
       notify: restart nginx
-
+    
     become: yes
     become_user: root
 
@@ -191,3 +183,5 @@
         name: gunicorn
         state: restarted
       become: yes
+      
+    
