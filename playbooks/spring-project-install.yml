@@ -51,6 +51,18 @@
     vars:
       packages:
         - openjdk-11-jdk
+        
+  - name: Install maven
+    become: yes
+    apt:
+      name: "{{ packages }}"
+      state: present
+    vars:
+      packages:
+        - maven
+        
+  - name: create jar
+    shell: "mvn install" 
 
   - name: copy env file
     shell : "cp {{app_dir}}/myproject/myproject/.env.example {{app_dir}}/myproject/myproject/.env"
