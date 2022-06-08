@@ -1,5 +1,5 @@
 ---
-- hosts: webserver
+- hosts: deploymentservers
 
   vars:
     app_dir: "{{user_dir}}/clone-springboot"
