@@ -65,7 +65,9 @@
     shell: "cd ~/clone-springboot" 
         
   - name: create jar
-    shell: "mvn install" 
+    shell: "mvn install"
+    args:
+      chdir: ~/clone-springboot
 
   - name: copy env file
     shell : "cp {{app_dir}}/myproject/myproject/.env.example {{app_dir}}/myproject/myproject/.env"
