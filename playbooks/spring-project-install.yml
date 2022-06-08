@@ -1,5 +1,15 @@
 ---
 - hosts: deploymentservers
+  
+  vars:
+    app_dir: "{{user_dir}}/clone-springboot"
+    git_repo_url: "https://github.com/it21918/devops_spring"
+    git_repo_branch: "main"
+
+  tasks:
+  
+  - name: Converge
+  hosts: all
   roles:
     - role: ansible-role-springboot
       sb_app_name: dummy-boot-app
@@ -22,12 +32,7 @@
           value: "{{ sb_applications_root_folder }}/{{ sb_app_name | upper }}/logs"
         - name: SERVER_PORT
           value: 8080
-  vars:
-    app_dir: "{{user_dir}}/clone-springboot"
-    git_repo_url: "https://github.com/it21918/devops_spring"
-    git_repo_branch: "main"
 
-  tasks:
 
   - name: print user_dir
     debug:
