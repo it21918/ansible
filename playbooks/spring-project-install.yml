@@ -139,7 +139,7 @@
 
   - name: ensure gunicorn service started
     service:  
-    name: gunicorn
+      name: gunicorn
       state: started
       enabled: yes
     become: yes
