@@ -62,7 +62,7 @@
         - maven
         
   - name: Go to project dir
-    shell: "cd clone-springboot" 
+    shell: "cd /home/it21906/clone-springboot" 
         
   - name: create jar
     shell: "mvn install" 
