@@ -1,6 +1,27 @@
 ---
 - hosts: deploymentservers
-
+  roles:
+    - role: ansible-role-springboot
+      sb_app_name: dummy-boot-app
+      sb_app_group_id: fr.chidix
+      sb_app_artifact_id: dummy-boot-app
+      sb_app_version: 0.0.1-SNAPSHOT
+      sb_app_extension: jar
+      sb_app_user: sbuser
+      sb_app_user_group: sbgroup
+      sb_local_maven_artifact_dowload: false
+      sb_app_artifact_file: "{{ playbook_dir}}/artifacts/dummy-boot-app-0.0.1-SNAPSHOT.jar"
+      sb_app_config_file_template_path: "{{ playbook_dir }}/templates/dummy-boot-app-configuration.yml.j2"
+      sb_app_java_opts_others: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=6006"
+      sb_app_healthcheck_urls:
+        - "http://localhost:8082/actuator/health"
+      sb_app_healthcheck_ports:
+        - 8082
+      sb_app_env:
+        - name: LOGGING_PATH
+          value: "{{ sb_applications_root_folder }}/{{ sb_app_name | upper }}/logs"
+        - name: SERVER_PORT
+          value: 8080
   vars:
     app_dir: "{{user_dir}}/clone-springboot"
     git_repo_url: "https://github.com/it21918/devops_spring"
@@ -129,71 +150,71 @@
 
     
     
-  - name: copy django service file
-    template:
-      src: ../files/django/gunicorn.service.j2
-      dest: "/etc/systemd/system/gunicorn.service"
-    become: yes
-    become_user: root
+#   - name: copy django service file
+#     template:
+#       src: ../files/django/gunicorn.service.j2
+#       dest: "/etc/systemd/system/gunicorn.service"
+#     become: yes
+#     become_user: root
       
 
-  - name: ensure gunicorn service started
-    service:  
-      name: gunicorn
-      state: started
-      enabled: yes
-    become: yes
+#   - name: ensure gunicorn service started
+#     service:  
+#       name: gunicorn
+#       state: started
+#       enabled: yes
+#     become: yes
 
-  - name: install and configure nginx
-    block:
+#   - name: install and configure nginx
+#     block:
 
-    - name: "APT - install nginx"
-      apt:
-        name: nginx
-        update_cache: yes
+#     - name: "APT - install nginx"
+#       apt:
+#         name: nginx
+#         update_cache: yes
 
-    - name: copy nginx conf file
-      template:
-        src: ../files/nginx/demo.nginx.j2
-        dest: "/etc/nginx/sites-available/django"
+#     - name: copy nginx conf file
+#       template:
+#         src: ../files/nginx/demo.nginx.j2
+#         dest: "/etc/nginx/sites-available/django"
 
-    - name: copy nginx https conf file
-      template:
-        src: ../files/nginx/demo.https.nginx.j2
-        dest: "/etc/nginx/sites-available/djangossl"
+#     - name: copy nginx https conf file
+#       template:
+#         src: ../files/nginx/demo.https.nginx.j2
+#         dest: "/etc/nginx/sites-available/djangossl"
 
 
-    - name: copy certificates
-      copy:
-        src: "{{item}}"
-        dest: /etc/ssl/private/
-      with_items:
-        - ../files/certs/server.crt
-        - ../files/certs/server.key
+#     - name: copy certificates
+#       copy:
+#         src: "{{item}}"
+#         dest: /etc/ssl/private/
+#       with_items:
+#         - ../files/certs/server.crt
+#         - ../files/certs/server.key
       
   
-    - name: enable django site in nginx
-      file:
-        src: "/etc/nginx/sites-available/django"
-        dest: "/etc/nginx/sites-enabled/django"
-        state: link
-      notify: restart nginx
+#     - name: enable django site in nginx
+#       file:
+#         src: "/etc/nginx/sites-available/django"
+#         dest: "/etc/nginx/sites-enabled/django"
+#         state: link
+#       notify: restart nginx
 
-    - name: enable flaskssl site in nginx
-      file:
-        src: "/etc/nginx/sites-available/djangossl"
-        dest: "/etc/nginx/sites-enabled/djangossl"
-        state: link
-      notify: restart nginx
+#     - name: enable flaskssl site in nginx
+#       file:
+#         src: "/etc/nginx/sites-available/djangossl"
+#         dest: "/etc/nginx/sites-enabled/djangossl"
+#         state: link
+#       notify: restart nginx
 
-    - name: de-activate default nginx site
-      file:
-        path: /etc/nginx/sites-enabled/default
-        state: absent
-      notify: restart nginx
+#     - name: de-activate default nginx site
+#       file:
+#         path: /etc/nginx/sites-enabled/default
+#         state: absent
+#       notify: restart nginx
     
-    become: yes
-    become_user: root
+#     become: yes
+#     become_user: root
 
 
 
