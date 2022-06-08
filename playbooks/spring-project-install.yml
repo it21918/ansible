@@ -5,9 +5,7 @@
     app_dir: "{{user_dir}}/clone-springboot"
     git_repo_url: "https://github.com/it21918/devops_spring"
     git_repo_branch: "main"
-
-  tasks:
-  
+    
   - name: Converge
   hosts: all
   roles:
@@ -33,6 +31,9 @@
         - name: SERVER_PORT
           value: 8080
 
+
+  tasks:
+  
 
   - name: print user_dir
     debug:
