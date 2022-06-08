@@ -42,6 +42,15 @@
       force: yes
       dest: "{{app_dir}}"
     changed_when: true
+    
+  - name: Install Java using Ansible
+    become: yes
+    apt:
+      name: "{{ packages }}"
+      state: present
+    vars:
+      packages:
+        - openjdk-11-jdk
 
 #   - name: copy env file
 #     shell : "cp {{app_dir}}/myproject/myproject/.env.example {{app_dir}}/myproject/myproject/.env"
