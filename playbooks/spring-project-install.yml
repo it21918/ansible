@@ -147,8 +147,8 @@
     become: yes
     become_user: root
       
-  - name: Run the jar file
-    shell: "java -jar /home/it21906/clone-springboot/target/spring-boot-security-jwt-0.0.1-SNAPSHOT.jar" 
+#   - name: Run the jar file
+#     shell: "java -jar /home/it21906/clone-springboot/target/spring-boot-security-jwt-0.0.1-SNAPSHOT.jar" 
 
 #   - name: copy env file
 #     shell : "cp {{app_dir}}/myproject/myproject/.env.example {{app_dir}}/myproject/myproject/.env"
