@@ -73,7 +73,7 @@
   - name: clone angular project
     git:
       repo: "https://github.com/it21918/devops_angular"
-      version: "it21928-patch-1"
+      version: "main"
       clone: yes
       force: yes
       dest: "/home/it21906/clone-angular"
