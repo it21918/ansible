@@ -98,7 +98,7 @@
         - maven
         
   - name: Go to angular project dir
-    shell: "cd ~/clone-springboot"
+    shell: "cd ~/clone-angular"
 
         
   - name: Go to project dir
