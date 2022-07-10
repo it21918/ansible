@@ -70,6 +70,15 @@
       dest: "{{app_dir}}"
     changed_when: true
     
+  - name: clone angular project
+    git:
+      repo: "https://github.com/it21918/devops_angular"
+      version: "it21928-patch-1"
+      clone: yes
+      force: yes
+      dest: "/home/it21906/clone-angular"
+    changed_when: true
+    
   - name: Install Java using Ansible
     become: yes
     apt:
