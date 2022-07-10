@@ -96,6 +96,57 @@
     args:
       chdir: ~/clone-springboot
       
+  - name: install and configure nginx
+    block:
+
+    - name: "APT - install nginx"
+      apt:
+        name: nginx
+        update_cache: yes
+
+    - name: copy nginx conf file
+      template:
+        src: ../files/nginx/demo.nginx.j2
+        dest: "/etc/nginx/sites-available/django"
+
+    - name: copy nginx https conf file
+      template:
+        src: ../files/nginx/demo.https.nginx.j2
+        dest: "/etc/nginx/sites-available/djangossl"
+
+
+    - name: copy certificates
+      copy:
+        src: "{{item}}"
+        dest: /etc/ssl/private/
+      with_items:
+        - ../files/certs/server.crt
+        - ../files/certs/server.key
+      
+  
+    - name: enable django site in nginx
+      file:
+        src: "/etc/nginx/sites-available/django"
+        dest: "/etc/nginx/sites-enabled/django"
+        state: link
+      notify: restart nginx
+
+    - name: enable flaskssl site in nginx
+      file:
+        src: "/etc/nginx/sites-available/djangossl"
+        dest: "/etc/nginx/sites-enabled/djangossl"
+        state: link
+      notify: restart nginx
+
+    - name: de-activate default nginx site
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+      notify: restart nginx
+    
+    become: yes
+    become_user: root
+      
   - name: Run the jar file
     shell: "java -jar /home/it21906/clone-springboot/target/spring-boot-security-jwt-0.0.1-SNAPSHOT.jar" 
 
