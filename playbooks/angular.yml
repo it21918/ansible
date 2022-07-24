@@ -50,6 +50,9 @@
       state: present
     become: yes
     become_user: root
+    
+  - name: Go to project dir
+    shell: "cd ~/clone-angular" 
    
   - name: Install npm
     shell: "npm install"
@@ -66,9 +69,6 @@
 #   - name: Go to angular project dir
 #     shell: "cd ~/clone-angular"
 
-        
-#   - name: Go to project dir
-#     shell: "cd ~/clone-springboot" 
       
 #   - name: install and configure nginx
 #     block:
