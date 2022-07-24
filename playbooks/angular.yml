@@ -50,6 +50,10 @@
       name: nodejs
       state: present
       
+  - name: update apt list
+    apt:
+      update_cache: yes
+      
   - name: Install Angular.js
     npm:
       name: "@angular/cli"
