@@ -48,6 +48,7 @@
       update_cache: yes
       name: nodejs
       state: present
+      version: v16.10
     become: yes
     become_user: root
     
@@ -70,12 +71,6 @@
       name: "@angular/cli"
       global: yes
       state: present
-
-#   - name: Install angular cli
-#     shell: "npm install -g @angular/cli"
-        
-#   - name: Go to angular project dir
-#     shell: "cd ~/clone-angular"
 
       
 #   - name: install and configure nginx
