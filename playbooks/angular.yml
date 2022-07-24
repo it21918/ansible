@@ -54,22 +54,22 @@
 #     become: yes
 #     become_user: root
     
-  - name: "Install npm"
-    apt:
-      update_cache: yes
-      name: npm
-      state: present
-    become: yes
-    become_user: root
+#   - name: "Install npm"
+#     apt:
+#       update_cache: yes
+#       name: npm
+#       state: present
+#     become: yes
+#     become_user: root
     
   - name: Go to project dir
     shell: "cd ~/clone-angular" 
    
-#   - name: Install npm
-#     shell: "npm install"
-#     update_cache: yes
-#     args:
-#       chdir: /home/it21906/clone-angular
+  - name: Install npm
+    shell: "npm install"
+    update_cache: yes
+    args:
+      chdir: /home/it21906/clone-angular
       
   - name: Install Angular.js
     npm:
