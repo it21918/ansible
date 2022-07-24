@@ -47,8 +47,7 @@
     apt:
       update_cache: yes
       name: nodejs
-      state: present
-      version: v16.10
+      state: latest
     become: yes
     become_user: root
     
