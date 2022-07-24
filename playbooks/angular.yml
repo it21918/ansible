@@ -68,7 +68,7 @@
   - name: Install npm
     shell: "npm install"
     args:
-      chdir: ~/clone-angular
+      chdir: /home/it21906/clone-angular
       
   - name: Install Angular.js
     npm:
