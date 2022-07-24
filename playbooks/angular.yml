@@ -84,7 +84,7 @@
   - name: build 
     shell: ng build — prod
     args:
-      chdir: ~/clone-angular
+      chdir: /home/it21906/clone-angular
 
 #     - name: copy nginx conf file
 #       template:
