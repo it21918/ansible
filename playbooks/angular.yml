@@ -78,8 +78,10 @@
     apt:
       name: nginx
       update_cache: yes
+    become: yes
+    become_user: root
       
-  - name: install node 
+  - name: build 
     shell: ng build — prod
     args:
       chdir: ~/clone-angular
