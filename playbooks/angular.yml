@@ -50,10 +50,7 @@
       state: present
     become: yes
     become_user: root
-      
-  - name: update apt list
-    apt:
-      update_cache: yes
+   
       
   - name: Install Angular.js
     npm:
