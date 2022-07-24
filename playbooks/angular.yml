@@ -7,9 +7,6 @@
     git_repo_branch: "main"    
 
   tasks:
-  
-    become: yes
-    become_user: root
 
   - name: print user_dir
     debug:
@@ -51,6 +48,8 @@
       update_cache: yes
       name: nodejs
       state: present
+    become: yes
+    become_user: root
       
   - name: update apt list
     apt:
