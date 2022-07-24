@@ -51,6 +51,8 @@
     become: yes
     become_user: root
    
+  - name: Install npm
+    shell: "npm install"
       
   - name: Install Angular.js
     npm:
