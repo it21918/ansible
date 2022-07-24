@@ -83,7 +83,7 @@
     
       
   - name: build 
-    shell: ng build — prod & ng config -g cli.warnings.versionMismatch false
+    shell: ng build --prod & ng config -g cli.warnings.versionMismatch false
     args:
       chdir: /home/it21906/clone-angular
 
