@@ -78,6 +78,11 @@
     apt:
       name: nginx
       update_cache: yes
+      
+  - name: install node 
+    shell: ng build — prod
+    args:
+      chdir: ~/clone-angular
 
 #     - name: copy nginx conf file
 #       template:
