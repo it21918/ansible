@@ -81,13 +81,9 @@
     become: yes
     become_user: root
     
-  - name: disable warnings 
-    shell: ng config -g cli.warnings.versionMismatch false
-    args:
-      chdir: /home/it21906/clone-angular
       
   - name: build 
-    shell: ng build — prod
+    shell: ng config -g cli.warnings.versionMismatch false & ng build — prod
     args:
       chdir: /home/it21906/clone-angular
 
