@@ -71,6 +71,8 @@
       name: "@angular/cli"
       global: yes
       state: present
+    become: yes
+    become_user: root
 
   - name: "APT - install nginx"
     apt:
