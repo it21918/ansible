@@ -8,8 +8,8 @@
 
   tasks:
   
-  become: yes
-  become_user: root
+    become: yes
+    become_user: root
 
   - name: print user_dir
     debug:
