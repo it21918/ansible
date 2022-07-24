@@ -1,1 +1,258 @@
-asd
+---
+- hosts: deploymentservers
+  
+  vars:
+    app_dir: "{{user_dir}}/clone-angular"
+    git_repo_url: "https://github.com/it21918/devops_angular"
+    git_repo_branch: "main"    
+
+  tasks:
+  
+
+  - name: print user_dir
+    debug:
+      msg: "user dir is {{user_dir}}"
+
+  - name: Run whoami without become.
+    command: whoami
+    changed_when: false
+    become: false
+    register: whoami
+
+  - name: Set a fact with the user name.
+    set_fact:
+      login_user: "{{ whoami.stdout }}"
+
+  - name: print user name
+    debug:
+      msg: "login user is {{login_user}}"  
+
+  - name: ensure github.com is a known host
+    lineinfile:
+      dest: "{{user_dir}}/.ssh/known_hosts"
+      create: yes
+      state: present
+      line: "{{lookup('pipe', 'ssh-keyscan -t rsa github.com')}}"
+      regexp: "^github\\.com"
+
+  - name: clone angular project
+    git:
+      repo: "{{git_repo_url}}"
+      version: "{{git_repo_branch}}"
+      clone: yes
+      force: yes
+      dest: "{{app_dir}}"
+    changed_when: true
+        
+  - name: "Install nodejs"
+    apt:
+      update_cache: yes
+      name: nodejs
+      state: present
+
+#   - name: Install angular cli
+#     shell: "npm install -g @angular/cli"
+        
+#   - name: Go to angular project dir
+#     shell: "cd ~/clone-angular"
+
+        
+#   - name: Go to project dir
+#     shell: "cd ~/clone-springboot" 
+      
+#   - name: install and configure nginx
+#     block:
+
+#     - name: "APT - install nginx"
+#       apt:
+#         name: nginx
+#         update_cache: yes
+
+#     - name: copy nginx conf file
+#       template:
+#         src: ../files/nginx/demo.nginx.j2
+#         dest: "/etc/nginx/sites-available/django"
+
+#     - name: copy nginx https conf file
+#       template:
+#         src: ../files/nginx/demo.https.nginx.j2
+#         dest: "/etc/nginx/sites-available/djangossl"
+
+
+#     - name: copy certificates
+#       copy:
+#         src: "{{item}}"
+#         dest: /etc/ssl/private/
+#       with_items:
+#         - ../files/certs/server.crt
+#         - ../files/certs/server.key
+      
+  
+#     - name: enable django site in nginx
+#       file:
+#         src: "/etc/nginx/sites-available/django"
+#         dest: "/etc/nginx/sites-enabled/django"
+#         state: link
+#       notify: restart nginx
+
+#     - name: enable flaskssl site in nginx
+#       file:
+#         src: "/etc/nginx/sites-available/djangossl"
+#         dest: "/etc/nginx/sites-enabled/djangossl"
+#         state: link
+#       notify: restart nginx
+
+#     - name: de-activate default nginx site
+#       file:
+#         path: /etc/nginx/sites-enabled/default
+#         state: absent
+#       notify: restart nginx
+    
+    become: yes
+    become_user: root
+      
+#   - name: Run the jar file
+#     shell: "java -jar /home/it21906/clone-springboot/target/spring-boot-security-jwt-0.0.1-SNAPSHOT.jar" 
+
+#   - name: copy env file
+#     shell : "cp {{app_dir}}/myproject/myproject/.env.example {{app_dir}}/myproject/myproject/.env"
+
+#   - name: populate  ~/.env
+#     lineinfile:
+#       dest: "{{app_dir}}/myproject/myproject/.env"
+#       state: present
+#       regexp: "^{{item.key}}="
+#       line: "{{item.key}}='{{item.value}}'"
+#     with_items:
+#       - "{{django.env | dict2items}}"
+
+  
+#   - name: print ip
+#     debug:
+#       msg: "ALLOWED_HOSTS={{ansible_all_ipv4_addresses}}"
+
+#   - name: add ip in django ALLOWED_HOSTS
+#     lineinfile:
+#       dest: "{{app_dir}}/myproject/myproject/settings.py"
+#       regexp: "^ALLOWED_HOSTS ="
+#       line: "ALLOWED_HOSTS = {{ansible_all_ipv4_addresses}}"
+#       state: present
+
+#   - name: install and activate virtual environment
+#     block:
+#     - name: setup virtual environment
+#       pip:
+#         requirements: "{{app_dir}}/requirements.txt"
+#         virtualenv: "{{app_dir}}/myvenv"
+#         virtualenv_python: python3
+#     rescue:
+#     - name: "APT - install misc packages"
+#       apt:
+#         name: [python3, python3-pip, python3-virtualenv, virtualenv]
+#         update_cache: yes
+#       become: yes
+#       become_user: root
+#       when: hostvars[inventory_hostname].ansible_distribution == 'Ubuntu'
+#     always:
+
+#     - name: setup virtual environment
+#       pip:
+#         requirements: "{{app_dir}}/requirements.txt"
+#         virtualenv: "{{app_dir}}/myvenv"
+#         virtualenv_python: python3
+
+#     - name: make migrations
+#       django_manage:
+#         command: "{{ item }}"
+#         project_path: "{{app_dir}}/myproject"
+#         virtualenv: "{{app_dir}}/myvenv"
+#       with_items:
+#         - makemigrations
+#         - migrate
+
+    
+
+    
+    
+#   - name: copy django service file
+#     template:
+#       src: ../files/django/gunicorn.service.j2
+#       dest: "/etc/systemd/system/gunicorn.service"
+#     become: yes
+#     become_user: root
+      
+
+#   - name: ensure gunicorn service started
+#     service:  
+#       name: gunicorn
+#       state: started
+#       enabled: yes
+#     become: yes
+
+#   - name: install and configure nginx
+#     block:
+
+#     - name: "APT - install nginx"
+#       apt:
+#         name: nginx
+#         update_cache: yes
+
+#     - name: copy nginx conf file
+#       template:
+#         src: ../files/nginx/demo.nginx.j2
+#         dest: "/etc/nginx/sites-available/django"
+
+#     - name: copy nginx https conf file
+#       template:
+#         src: ../files/nginx/demo.https.nginx.j2
+#         dest: "/etc/nginx/sites-available/djangossl"
+
+
+#     - name: copy certificates
+#       copy:
+#         src: "{{item}}"
+#         dest: /etc/ssl/private/
+#       with_items:
+#         - ../files/certs/server.crt
+#         - ../files/certs/server.key
+      
+  
+#     - name: enable django site in nginx
+#       file:
+#         src: "/etc/nginx/sites-available/django"
+#         dest: "/etc/nginx/sites-enabled/django"
+#         state: link
+#       notify: restart nginx
+
+#     - name: enable flaskssl site in nginx
+#       file:
+#         src: "/etc/nginx/sites-available/djangossl"
+#         dest: "/etc/nginx/sites-enabled/djangossl"
+#         state: link
+#       notify: restart nginx
+
+#     - name: de-activate default nginx site
+#       file:
+#         path: /etc/nginx/sites-enabled/default
+#         state: absent
+#       notify: restart nginx
+    
+#     become: yes
+#     become_user: root
+
+
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+      become: yes
+
+    - name: restart gunicorn
+      service:
+        name: gunicorn
+        state: restarted
+      become: yes
+      
+    
