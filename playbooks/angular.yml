@@ -78,13 +78,13 @@
       state: present
 
       
-#   - name: install and configure nginx
-#     block:
+  - name: install and configure nginx
+    block:
 
-#     - name: "APT - install nginx"
-#       apt:
-#         name: nginx
-#         update_cache: yes
+  - name: "APT - install nginx"
+    apt:
+      name: nginx
+      update_cache: yes
 
 #     - name: copy nginx conf file
 #       template:
