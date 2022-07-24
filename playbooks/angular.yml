@@ -42,14 +42,17 @@
       force: yes
       dest: "{{app_dir}}"
     changed_when: true
+    
+  - name: install node 
+    shell: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - && sudo apt-get install -y nodejs
         
-  - name: "Install nodejs"
-    apt:
-      update_cache: yes
-      name: nodejs
-      state: latest
-    become: yes
-    become_user: root
+#   - name: "Install nodejs"
+#     apt:
+#       update_cache: yes
+#       name: nodejs
+#       state: latest
+#     become: yes
+#     become_user: root
     
   - name: "Install npm"
     apt:
