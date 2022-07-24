@@ -65,11 +65,6 @@
   - name: Go to project dir
     shell: "cd ~/clone-angular" 
    
-#   - name: Install npm
-#     shell: "npm install"
-#     update_cache: yes
-#     args:
-#       chdir: /home/it21906/clone-angular
       
   - name: Install Angular.js
     npm:
