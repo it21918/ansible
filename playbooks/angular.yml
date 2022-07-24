@@ -67,6 +67,7 @@
    
   - name: Install npm
     shell: "npm install"
+    update_cache: yes
     args:
       chdir: /home/it21906/clone-angular
       
