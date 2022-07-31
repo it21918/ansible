@@ -97,16 +97,6 @@
       packages:
         - maven
         
-  - name: Install npm
-    shell: "sudo apt-get install nodejs"
-    
-  - name: Install angular cli
-    shell: "npm install -g @angular/cli"
-        
-  - name: Go to angular project dir
-    shell: "cd ~/clone-angular"
-
-        
   - name: Go to project dir
     shell: "cd ~/clone-springboot" 
         
