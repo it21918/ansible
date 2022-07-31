@@ -91,7 +91,7 @@
     
   - name: Copy files to remote host
     copy:
-      src: /home/it21906/clone-angular/dist
+      src: {{user_dir}}/clone-angular/dist
       dest: /var/www/html
       owner: www-data
       group: www-data
