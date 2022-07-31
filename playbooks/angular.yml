@@ -96,6 +96,7 @@
       owner: www-data
       group: www-data
       mode: 0755
+      remote_src: yes
       
 #   sudo nano /etc/nginx/sites-available/angular_demo
 #  {<server_name> your_IP abcd.com www.abcd.com;root /home/username/React-counter-app/build;index index.html index.htm;location / {try_files $uri /index.html =404;}}
