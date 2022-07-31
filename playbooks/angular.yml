@@ -91,7 +91,7 @@
     
   - name: Copy files to remote host
     copy:
-      src: {{app_dir}}/dist
+      src: "{{app_dir}}/dist"
       dest: /var/www/html
       owner: www-data
       group: www-data
