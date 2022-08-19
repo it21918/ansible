@@ -1,5 +1,5 @@
 ---
-- hosts: deploymentjenkins
+- hosts: deploymentservers
 
   vars:
     app_dir: "{{user_dir}}/adminSystem"
