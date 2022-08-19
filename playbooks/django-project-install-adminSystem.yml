@@ -102,7 +102,7 @@
         virtualenv_python: python3
 
     - name: give rights
-      shell: chmod +x manage.py
+      shell: chmod +x {{app_dir}}/manage.py
 
     - name: make migrations
       django_manage:
