@@ -2,9 +2,9 @@
 - hosts: deploymentjenkins
 
   vars:
-    app_dir: "{{user_dir}}/devopsSystem"
+    app_dir: "{{user_dir}}/userSystem"
     
-    git_repo_url: "https://github.com/it21998/devopsSystem.git"
+    git_repo_url: "https://github.com/it21918/django_userSystem.git"
     git_repo_branch: "main"
 
   tasks:
@@ -51,11 +51,11 @@
 
 
   - name: copy env file
-    shell : "cp {{app_dir}}/student_management/student_management/.env.example {{app_dir}}/student_management/student_management/.env"
+    shell : "cp {{app_dir}}/userSystem/userSystem/.env.example {{app_dir}}/userSystem/userSystem/.env"
 
   - name: populate  ~/.env
     lineinfile:
-      dest: "{{app_dir}}/student_management/student_management/.env"
+      dest: "{{app_dir}}/userSystem/userSystem/.env"
       state: present
       regexp: "^{{item.key}}="
       line: "{{item.key}}='{{item.value}}'"
@@ -73,7 +73,7 @@
 
   - name: add ip in django ALLOWED_HOSTS
     lineinfile:
-      dest: "{{app_dir}}/student_management/student_management/settings.py"
+      dest: "{{app_dir}}/userSystem/userSystem/settings.py"
       regexp: "^ALLOWED_HOSTS ="
       line: "ALLOWED_HOSTS = ['{{ipify_public_ip}}','127.0.1.1','localhost','10.3.0.4']"
       state: present
@@ -104,7 +104,7 @@
     - name: make migrations
       django_manage:
         command: "{{ item }}"
-        project_path: "{{app_dir}}/student_management"
+        project_path: "{{app_dir}}/userSystem"
         virtualenv: "{{app_dir}}/myvenv"
       with_items:
         - collectstatic
