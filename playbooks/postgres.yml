@@ -1,5 +1,5 @@
 ---
-- hosts: deploymentjenkins
+- hosts: database
   become: yes
   
   roles:
