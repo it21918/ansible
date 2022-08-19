@@ -37,7 +37,7 @@
     - name: "Grant db user access to app db"
       postgresql_privs:
         type: database
-        database: "postgresdb"
+        database: "myproject"
         roles: "myprojectuser"
         grant_option: no
         privs: all
