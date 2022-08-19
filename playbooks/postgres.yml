@@ -24,7 +24,7 @@
         state: present
         name: "myproject"
       become: yes
-      become_user: postgres
+      become_user: root
 
     - name: "Create db user"
       postgresql_user:
