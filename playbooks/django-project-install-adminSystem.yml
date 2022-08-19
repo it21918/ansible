@@ -104,7 +104,7 @@
     - name: make migrations
       django_manage:
         command: "{{ item }}"
-        project_path: "{{app_dir}}/adminSystem/base"
+        project_path: "{{app_dir}}/adminSystem"
         virtualenv: "{{app_dir}}/myvenv"
       with_items:
         - collectstatic
