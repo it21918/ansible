@@ -1,4 +1,4 @@
-- hosts: deploymentjenkins
+- hosts: deploymentservers
   roles:
     - role:  jebovic.mailhog
       become: yes
