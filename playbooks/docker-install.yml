@@ -25,6 +25,6 @@
       name: geerlingguy.pip
   - name: 'add users to docker group'
     user:
-      name: 'azureuser'
+      name: 'it21906'
       groups: 'docker'
       append: 'yes'
