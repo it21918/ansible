@@ -1,4 +1,4 @@
-- hosts: deploymentdocker
+- hosts: deploymentservers
   become: yes
   become_user: root
   vars:
