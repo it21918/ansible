@@ -138,7 +138,7 @@
     - name: Run gunicorn on a virtualenv
       community.general.gunicorn:
         app: 'wsgi'
-        chdir: '/home/it21906/adminSystem/adminSystem'
+        chdir: '/home/it21906/adminSystem/adminSystem/adminSystem'
         venv: '/home/it21906/adminSystem/myvenv'
 
   - name: install and configure nginx
