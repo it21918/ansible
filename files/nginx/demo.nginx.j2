@@ -2,11 +2,6 @@ server {
     listen 8000;
     server_name _;
 
-    location = /favicon.ico { access_log off; log_not_found off; }
-    location /static/ {
-        root /home/it21906/adminSystem/adminSystem/base;
-    }
-
     location / {
         include proxy_params;
         proxy_pass http://unix:/home/it21906/adminSystem/adminSystem/base/base.sock;
