@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=it21906
 Group=www-data
-WorkingDirectory=/home/it21906/userSystem/base
-ExecStart=/home/it21906/userSystem/myvenv/bin/gunicorn --access-logfile - --workers 3  --bind unix:/home/it21906/userSystem/base/base.sock base.wsgi:application
+WorkingDirectory=/home/it21906/userSystem/userSystem
+ExecStart=/home/it21906/userSystem/myvenv/bin/gunicorn --access-logfile - --workers 3  --bind  0.0.0.0:8000 userSystem.wsgi:application
 
 
 [Install]
