@@ -139,6 +139,7 @@
       community.general.gunicorn:
         app: 'wsgi'
         chdir: '/home/it21906/adminSystem/adminSystem'
+        venv: '/home/it21906/adminSystem/myvenv'
 
   - name: install and configure nginx
     block:
