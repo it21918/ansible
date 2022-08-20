@@ -10,3 +10,12 @@
       dest: "/etc/systemd/system/mailhog.service"
     become: yes
     become_user: root
+    
+  - name: start mailhog 
+    shell: "systemctl start mailhog"
+    become: yes
+    become_user: root
+    
+  
+
+
