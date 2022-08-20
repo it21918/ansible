@@ -4,5 +4,9 @@
       become: yes
 
   tasks:
-  - name: enable
-    shell : " /usr/local/bin/mailhog -api-bind-addr :8025 -ui-bind-addr :8025"
+  - name: copy mailhog service file
+      template:
+        src: ../files/mailhog.service
+        dest: "/etc/systemd/system/mailhog.service"
+      become: yes
+      become_user: root
