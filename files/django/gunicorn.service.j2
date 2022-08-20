@@ -5,8 +5,8 @@ After=network.target
 [Service]
 User=it21906
 Group=www-data
-WorkingDirectory="/home/it21906/adminSystem/adminSystem"
-ExecStart="/home/it21906/adminSystem/myvenv/bin/gunicorn --access-logfile - --workers 3  --bind  0.0.0.0:8000 adminSystem.wsgi:application"
+WorkingDirectory=/home/it21906/adminSystem/adminSystem
+ExecStart=/home/it21906/adminSystem/myvenv/bin/gunicorn --access-logfile - --workers 3  --bind  0.0.0.0:8000 adminSystem.wsgi:application
 
 
 [Install]
