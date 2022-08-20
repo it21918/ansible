@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: deploymentdocker
   become: yes
   become_user: root
   vars:
@@ -25,6 +25,6 @@
       name: geerlingguy.pip
   - name: 'add users to docker group'
     user:
-      name: 'vagrant'
+      name: 'azureuser'
       groups: 'docker'
       append: 'yes'
