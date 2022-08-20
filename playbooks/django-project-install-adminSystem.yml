@@ -134,6 +134,11 @@
         state: started
         enabled: yes
       become: yes
+      
+    - name: Run gunicorn on a virtualenv
+      community.general.gunicorn:
+        app: 'wsgi'
+        chdir: '/home/it21906/adminSystem/adminSystem'
 
   - name: install and configure nginx
     block:
