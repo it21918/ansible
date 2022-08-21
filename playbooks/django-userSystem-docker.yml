@@ -2,7 +2,7 @@
 - hosts: deploymentservers
 
   vars:
-    app_dir: "{{user_dir}}/devopsSystem"
+    app_dir: "{{user_dir}}/userSystem"
     user_dir: "/home/it21906"
     git_repo_url: "https://github.com/it21918/django_userSystem.git"
     git_repo_branch: "main"
