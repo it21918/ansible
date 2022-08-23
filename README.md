@@ -116,3 +116,15 @@ ansible-galaxy install geerlingguy.java
 * [debconf module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debconf_module.html)
 
 * [ansible postgres role](https://galaxy.ansible.com/geerlingguy/postgresql)
+
+## DEPLOY PROJECT WITHOUT DOCKER & KUBERNATES
+ansible-galaxy install geerlingguy.postgresql
+ansible-galaxy install jebovic.mailhog
+
+## OPEN PORTS ON YOUR VM
+8000, 9000, 5000, 8025
+
+## ACESS YOUR PROJECT COMPONETS
+http://your_vm_ip:8000/    #adminSystem
+http://your_vm_ip:9000/    #userSystem
+http://your_vm_ip:8025/    #mailhog)
