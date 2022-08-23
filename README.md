@@ -152,18 +152,23 @@ ansible-playbook playbooks/django2-install-microk8s.yml
 ```
 
 ## Install kubernates on your vm
+```bash
 sudo snap install microk8s --classic
 sudo ufw allow in on eth0 && sudo ufw allow out on eth0
 sudo ufw default allow routed
-
+```
 ## Enable kubernates
+```bash
 microk8s enable dns ingress storage
 microk8s enable dashboard
+```
 
 ## Access with sudo
+```bash
 sudo usermod -a -G microk8s $USER
 sudo chown -f -R $USER ~/.kube
 su - $USER
+```
 
 ## Open ports on your vm
 ```bash
