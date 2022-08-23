@@ -23,89 +23,17 @@ ansible -m ping all
 ```bash
 ansible -m ping all <group-name>
 ```
+# Install ansible & roles
+```bash
+sudo apt update
+sudo apt install software-properties-common
+sudo apt-add-repository --yes --update ppa:ansible/ansible
 
-# Run development environment with Vagrant
-* run testing environment
-```bash
-vagrant plugin install vagrant-hostmanager
-cd vagrant
-vagrunt up
-vagrant ssh-config >> ~/.ssh/config
-```
-* run a playbook
-```bash
-ansible-playbook -l database playbooks/database.yml
-```
-Links:
-* [Vagrant Quick start](https://learn.hashicorp.com/collections/vagrant/getting-started)
+sudo apt update
+sudo apt install ansible
 
-## Vault
-* create a file that holds the **secret**
-```bash
-touch playbooks/vars/api_key.yml
-```
-* encrypt the file
-```bash
-ansible-vault encrypt playbooks/vars/api_key.yml
-```
-* run task that needs this file
-```bash
-ansible-playbook playbooks/use-api-key.yaml --ask-vault-pass
-```
-and you will be asked to provide the password
-* edit the encrypoted file with
-```bash
-ansible-vault edit playbooks/vars/api_key.ym
-```
-* use stored password to decrypt
-create a file that holds the password with 600 permissions
-```bash
-vim ~/.ansible/vault_pass.txt
-chmod 600 ~/.ansible/vault_pass.txt
-```
-```bash
-ansible-playbook playbooks/use-api-key.yaml --vault-password-file  ~/.ansible/vault_pass.txt
-```
-Links:
-* [Encrypting content with Ansible Vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html)
-## Ignore host_key_checking
-
-add this line to ``ansible.cfg`` in [defaults] section
-```ini
-host_key_checking = false
-```
-Links:
-* [Managing host key checking](https://docs.ansible.com/ansible/latest/user_guide/connection_details.html)
-
-
-## Get host basic info
-```bash
-ansible-playbook -l <hostname> playbooks/hostvars_and_facts.yml
-```
-## Create self-signed certificates
-```bash
-cd files/certs
-openssl req -x509 -newkey rsa:4096 -keyout server.key -out server.crt -days 365 --nodes -subj '/C=GR/O=myorganization/OU=it/CN=myorg.com'
-```
-notice that crt and key files are added to .gitignore
-
-
-* postgres
-install postgresql role
-```bash
-ansible-galaxy install geerlingguy.postgresql
-```
-## Docker
-```bash
 ansible-galaxy install geerlingguy.docker
 ansible-galaxy install geerlingguy.pip
-
-```
-## Jenkins
-```bash
-ansible-galaxy install geerlingguy.jenkins
-ansible-galaxy install geerlingguy.java
-
 ```
 
 ## Deploy your project without docker & kubernates
