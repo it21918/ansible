@@ -2,10 +2,10 @@
 - hosts: deploymentservers
 
   vars:
-    app_dir: "{{user_dir}}/microk8sSystem"
+    app_dir: "{{user_dir}}/userSystem"
     
-    git_repo_url: "https://github.com/it21998/microk8sSystem.git"
-    git_repo_branch: "main"
+    git_repo_url: "https://github.com/it21918/django_userSystem.git"
+    git_repo_branch: "kubernates_django_userSystem"
 
   tasks:
 
@@ -51,7 +51,7 @@
 
 
   - name: copy env file
-    shell : "cp {{app_dir}}/student_management/student_management/.env.example {{app_dir}}/student_management/student_management/.env"
+    shell : "cp {{app_dir}}/userSystem/userSystem/.env.example {{app_dir}}/userSystem/userSystem/.env"
 
   
   - name: Get my public IP
@@ -63,7 +63,7 @@
 
   - name: add ip in django ALLOWED_HOSTS
     lineinfile:
-      dest: "{{app_dir}}/student_management/student_management/settings.py"
+      dest: "{{app_dir}}/userSystem/userSystem/settings.py"
       regexp: "^ALLOWED_HOSTS ="
       line: "ALLOWED_HOSTS = ['{{ipify_public_ip}}','127.0.1.1','localhost','10.3.0.4']"
       state: present
@@ -72,20 +72,20 @@
   - name: django deploy_yml
     command: microk8s.kubectl apply -f k8s/django/django2-deployment.yaml
     args:
-      chdir: /home/azureuser/microk8sSystem
+      chdir: /home/it21906/microk8sSystem
 
   - name: django clip
     command: microk8s.kubectl apply -f k8s/django/django2-clip.yaml
     args:
-      chdir: /home/azureuser/microk8sSystem
+      chdir: /home/it21906/microk8sSystem
 
   - name: django pvc
     command: microk8s.kubectl apply -f k8s/django/django2-ingress.yaml
     args:
-      chdir: /home/azureuser/microk8sSystem
+      chdir: /home/it21906/microk8sSystem
 
 
   - name: mailhog set_up
     command: microk8s.kubectl apply -f k8s/django/mailhog.yaml
     args:
-      chdir: /home/azureuser/microk8sSystem
+      chdir: /home/it21906/microk8sSystem
