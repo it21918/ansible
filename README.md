@@ -117,14 +117,18 @@ ansible-galaxy install geerlingguy.java
 
 * [ansible postgres role](https://galaxy.ansible.com/geerlingguy/postgresql)
 
-## DEPLOY PROJECT WITHOUT DOCKER & KUBERNATES
+## Deploy your project without docker & kubernates
+```bash
 ansible-galaxy install geerlingguy.postgresql
 ansible-galaxy install jebovic.mailhog
+```
 
-## OPEN PORTS ON YOUR VM
+## Open ports on your vm
+```bash
 8000, 9000, 5000, 8025
+```
 
-## ACESS YOUR PROJECT COMPONETS
+## Urls for access project's componets
 http://your_vm_ip:8000/    #adminSystem
 http://your_vm_ip:9000/    #userSystem
 http://your_vm_ip:8025/    #mailhog)
