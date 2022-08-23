@@ -108,15 +108,6 @@ ansible-galaxy install geerlingguy.java
 
 ```
 
-## Links
-* [apt module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html)
-* [file module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html)
-* [copy module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html)
-* [service module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html)
-* [debconf module](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/debconf_module.html)
-
-* [ansible postgres role](https://galaxy.ansible.com/geerlingguy/postgresql)
-
 ## Deploy your project without docker & kubernates
 ```bash
 ansible-galaxy install geerlingguy.postgresql
@@ -129,6 +120,60 @@ ansible-galaxy install jebovic.mailhog
 ```
 
 ## Urls for access project's componets
+```bash
 http://your_vm_ip:8000/    #adminSystem
 http://your_vm_ip:9000/    #userSystem
 http://your_vm_ip:8025/    #mailhog)
+```
+
+## Deploy your project with docker
+```bash
+ansible-playbook playbooks/docker-install.yml
+ansible-playbook playbooks/django-app-docker.yml
+ansible-playbook playbooks/django2-app-docker.yml
+```
+
+## Open ports on your vm
+```bash
+8000, 9000, 80, 8025, 100, 5432
+```
+
+## Urls for access project's componets
+```bash
+http://your_vm_ip/    #adminSystem
+http://your_vm_ip:100/    #userSystem
+http://your_vm_ip:125/    #mailhog)
+```
+
+## Deploy your project with kubernates
+```bash
+ansible-playbook playbooks/django-install-microk8s.yml
+ansible-playbook playbooks/django2-install-microk8s.yml
+```
+
+##Install kubernates on your vm
+sudo snap install microk8s --classic
+sudo ufw allow in on eth0 && sudo ufw allow out on eth0
+sudo ufw default allow routed
+
+##Enable kubernates
+microk8s enable dns ingress storage
+microk8s enable dashboard
+
+##Access with sudo
+sudo usermod -a -G microk8s $USER
+sudo chown -f -R $USER ~/.kube
+su - $USER
+
+## Open ports on your vm
+```bash
+8000, 9000, 80, 8025, 100, 16443, 30191
+```
+
+## Urls for access project's componets
+```bash
+django-21918.cloudns.ph #adminSystem
+django2-system.ddns.net #userSystem
+your_vm_ip:30191 #mailhog
+```
+
