@@ -143,7 +143,7 @@
       chdir: /home/it21906/adminSystem
 
   - name: Run migrate on django
-    command: docker-compose exec -T django python manage.py migrate
+    command: docker-compose exec -T django python manage.py migrate --noinput
     args:
       chdir: /home/it21906/adminSystem
   
