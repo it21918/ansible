@@ -72,20 +72,20 @@
   - name: django deploy_yml
     command: microk8s.kubectl apply -f k8s/django/django2-deployment.yaml
     args:
-      chdir: /home/it21906/microk8sSystem
+      chdir: /home/it21906/userSystem
 
   - name: django clip
     command: microk8s.kubectl apply -f k8s/django/django2-clip.yaml
     args:
-      chdir: /home/it21906/microk8sSystem
+      chdir: /home/it21906/userSystem
 
   - name: django pvc
     command: microk8s.kubectl apply -f k8s/django/django2-ingress.yaml
     args:
-      chdir: /home/it21906/microk8sSystem
+      chdir: /home/it21906/userSystem
 
 
   - name: mailhog set_up
     command: microk8s.kubectl apply -f k8s/django/mailhog.yaml
     args:
-      chdir: /home/it21906/microk8sSystem
+      chdir: /home/it21906/userSystem
