@@ -93,8 +93,8 @@
 #     command: id
 #     register: user_groups
 
-  - debug:
-      msg: "Groups {{user_groups}}"
+#   - debug:
+#       msg: "Groups {{user_groups}}"
 
   - name: check if docker-compose exists
     stat: 
