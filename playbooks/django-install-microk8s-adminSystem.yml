@@ -96,7 +96,7 @@
 #       chdir: /home/azureuser/microk8sAdmin
   
   - name: secret
-    command: microk8s.kubernets create secret generic pg-user fro-literal=PGUSER=myprojectuser from-literal=PGPASSWORD=password
+    command: adminSystem. kubernets create secret generic pg-user fro-literal=PGUSER=myprojectuser from-literal=PGPASSWORD=password
     args:
       chdir: /home/it21906/adminSystem
 
