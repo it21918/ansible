@@ -100,10 +100,10 @@
 #     args:
 #       chdir: /home/it21906/adminSystem
 
-  - name: configmap
-    command: microk8s.kubectl create configmap django-config --from-env-file=adminSystem/adminSystem/.env
-    args:
-      chdir: /home/it21906/adminSystem
+#   - name: configmap
+#     command: microk8s.kubectl create configmap django-config --from-env-file=adminSystem/adminSystem/.env
+#     args:
+#       chdir: /home/it21906/adminSystem
 
  
 #   - name: dump_sqlfile
