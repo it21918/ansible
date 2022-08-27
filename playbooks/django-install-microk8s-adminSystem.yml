@@ -95,10 +95,10 @@
 #     args:
 #       chdir: /home/azureuser/microk8sAdmin
   
-  - name: secret
-    command: adminSystem. kubernets create secret generic pg-user fro-literal=PGUSER=myprojectuser from-literal=PGPASSWORD=password
-    args:
-      chdir: /home/it21906/adminSystem
+#   - name: secret
+#     command: microk8s. kubernets create secret generic pg-user fro-literal=PGUSER=myprojectuser from-literal=PGPASSWORD=password
+#     args:
+#       chdir: /home/it21906/adminSystem
 
   - name: configmap
     command: microk8s.kubectl create configmap django-config --from-env-file=adminSystem/adminSystem/.env
