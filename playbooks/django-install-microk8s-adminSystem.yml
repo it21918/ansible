@@ -115,14 +115,14 @@
   - name: django deploy_yml
     command: microk8s.kubectl apply -f k8s/django/django-deployment.yaml
     args:
-      chdir: /home/it21906/microk8sAdmin
+      chdir: /home/it21906/adminSystem
 
   - name: django clip
     command: microk8s.kubectl apply -f k8s/django/django-clip.yaml
     args:
-      chdir: /home/it21906/microk8sAdmin
+      chdir: /home/it21906/adminSystem
 
   - name: django pvc
     command: microk8s.kubectl apply -f k8s/django/django-ingress.yaml
     args:
-      chdir: /home/it21906/microk8sAdmin
+      chdir: /home/it21906/adminSystem
