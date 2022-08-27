@@ -126,7 +126,7 @@
 
   - name: run docker docker-compose
     block:
-      - name: Run `docker-compose up`
+      - name: Run `docker compose up`
         docker_compose:
           project_src: "{{app_dir}}"
           build: yes
