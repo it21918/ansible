@@ -60,7 +60,7 @@
       regexp: "^{{item.key}}="
       line: "{{item.key}}='{{item.value}}'"
     with_items:
-      - "{{django2.env | dict2items}}"
+      - "{{django.env | dict2items}}"
 
   - name: Get my public IP
     ipify_facts:
