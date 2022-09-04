@@ -89,6 +89,8 @@
   
   - name: userresg
     command: id
+ansible Public
+
     register: user_groups
 
   - debug:
