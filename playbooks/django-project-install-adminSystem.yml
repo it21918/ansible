@@ -165,9 +165,14 @@
         path: /etc/nginx/sites-enabled/default
         state: absent
       notify: restart nginx
+      
+    - name: copy env file
+      shell : "systemctl restart gunicorn"
 
     become: yes
     become_user: root
+    
+    
 
 
 
