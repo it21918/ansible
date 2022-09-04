@@ -68,48 +68,23 @@
       line: "ALLOWED_HOSTS = ['{{ipify_public_ip}}','127.0.1.1','localhost','10.3.0.4']"
       state: present
 
-#   - name: clone db project
-#     git:
-#       repo: "https://github.com/it21998/db.git"
-#       version: "main"
-#       clone: yes
-#       force: yes
-#       dest: "/home/azureuser/db"
-#     changed_when: true
 
-
-#   - name: psql deploy_yml
-#     command: microk8s.kubectl apply -f k8s/db/postgres-deployment.yaml
-#     args:
-#       chdir: /home/azureuser/microk8sAdmin
+  - name: psql deploy_yml
+    command: microk8s.kubectl apply -f k8s/db/postgres-deployment.yaml
+    args:
+      chdir: /home/it21906/adminSystem
 
 
 
-#   - name: psql clip
-#     command: microk8s.kubectl apply -f k8s/db/postgres-clip.yaml
-#     args:
-#       chdir: /home/azureuser/microk8sAdmin
+  - name: psql clip
+    command: microk8s.kubectl apply -f k8s/db/postgres-clip.yaml
+    args:
+      chdir: /home/it21906/adminSystem
 
-#   - name: psql pvc
-#     command: microk8s.kubectl apply -f k8s/db/postgres-pvc.yaml
-#     args:
-#       chdir: /home/azureuser/microk8sAdmin
-  
-#   - name: secret
-#     command: microk8s. kubernets create secret generic pg-user fro-literal=PGUSER=myprojectuser from-literal=PGPASSWORD=password
-#     args:
-#       chdir: /home/it21906/adminSystem
-
-#   - name: configmap
-#     command: microk8s.kubectl create configmap django-config --from-env-file=adminSystem/adminSystem/.env
-#     args:
-#       chdir: /home/it21906/adminSystem
-
- 
-#   - name: dump_sqlfile
-#     command: microk8s.kubectl exec -i postgres-59bc9f578f-fd4g9  -- psql -U myprojectuser  -d test_db < /home/azureuser/db/sqlfile.sql
-#     args:
-#       chdir: /home/azureuser
+  - name: psql pvc
+    command: microk8s.kubectl apply -f k8s/db/postgres-pvc.yaml
+    args:
+      chdir: /home/it21906/adminSystem
 
 
   - name: django deploy_yml
