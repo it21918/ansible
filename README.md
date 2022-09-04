@@ -49,9 +49,9 @@ ansible-galaxy install jebovic.mailhog
 
 ## Urls for access project's componets
 ```bash
-http://your_vm_ip:8000/    #adminSystem
-http://your_vm_ip:9000/    #userSystem
-http://your_vm_ip:8025/    #mailhog)
+http://your_vm_ip:8001/    #adminSystem
+http://your_vm_ip:9001/    #userSystem
+http://your_vm_ip:8026/    #mailhog)
 ```
 
 ## Deploy your project with docker
@@ -63,7 +63,7 @@ ansible-playbook playbooks/django2-app-docker.yml
 
 ## Open ports on your vm
 ```bash
-8000, 9000, 80, 8025, 100, 5432
+8001, 9001, 80, 8026, 8025, 5433, 100, 5432
 ```
 
 ## Urls for access project's componets
