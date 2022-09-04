@@ -133,6 +133,7 @@
         state: started
         enabled: yes
       become: yes
+      notify: restart gunicorn
 
   - name: install and configure nginx
     block:
