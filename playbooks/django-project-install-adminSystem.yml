@@ -134,6 +134,7 @@
         state: started
         enabled: yes
       become: yes
+      notify: restart gunicorn
       
 
   - name: install and configure nginx
@@ -166,8 +167,6 @@
         state: absent
       notify: restart nginx
       
-    - name: copy env file
-      shell : "systemctl restart gunicorn"
 
     become: yes
     become_user: root
