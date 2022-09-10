@@ -87,6 +87,7 @@ sudo ufw default allow routed
 ```
 ## Enable kubernates
 ```bash
+microk8s start
 microk8s enable dns ingress storage
 microk8s enable dashboard
 ```
