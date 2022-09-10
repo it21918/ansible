@@ -68,7 +68,7 @@ ansible-playbook playbooks/django2-app-docker.yml
 
 ## Urls for access project's componets
 ```bash
-http://your_vm_ip/8001    #adminSystem
+http://your_vm_ip:8001    #adminSystem
 http://your_vm_ip:9001/    #userSystem
 http://your_vm_ip:8026/    #mailhog)
 ```
