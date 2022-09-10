@@ -165,8 +165,9 @@
         state: absent
       notify: restart nginx
       
-    - name: restart
-      shell : "reboot"
+    - name: Restart
+      ansible.builtin.reboot:
+        reboot_timeout: 3600
 
     become: yes
     become_user: root
