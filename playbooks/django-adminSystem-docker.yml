@@ -131,6 +131,8 @@
           project_src: "{{app_dir}}"
           build: yes
         register: output
+        become: yes
+        become_user: root
 
       - debug:
           var: output
