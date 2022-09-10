@@ -106,8 +106,8 @@ su - $USER
 
 ## Urls for access project's componets
 ```bash
-django-21918.cloudns.ph #adminSystem
-django2-system.ddns.net #userSystem
-your_vm_ip:30191 #mailhog
+http://your_ip_address:8000 #adminSystem
+http://your_ip_address:9000 #userSystem
+your_vm_ip:8025 #mailhog
 ```
 
