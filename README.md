@@ -1,5 +1,5 @@
 # Project set up
-* create an inventory file (e.g. hosts or hosts.yaml) that holds the remote hosts that ansible will handle.
+* change the inventory file (hosts.yaml) that holds the remote hosts that ansible will handle.
 * Example entry is
 ```yaml
 webserver: # <-- group
@@ -44,14 +44,14 @@ ansible-galaxy install jebovic.mailhog
 
 ## Open ports on your vm
 ```bash
-8000, 9000, 5000, 8025
+8000, 9000, 8025, 5432, 1025, 80, 100
 ```
 
 ## Urls for access project's componets
 ```bash
-http://your_vm_ip:8001/    #adminSystem
-http://your_vm_ip:9001/    #userSystem
-http://your_vm_ip:8026/    #mailhog)
+http://your_vm_ip:8000/    #adminSystem
+http://your_vm_ip:9000/    #userSystem
+http://your_vm_ip:8025/    #mailhog
 ```
 
 ## Deploy your project with docker
@@ -63,14 +63,14 @@ ansible-playbook playbooks/django2-app-docker.yml
 
 ## Open ports on your vm
 ```bash
-8001, 9001, 80, 8026, 8025, 5433, 100, 5432
+8001, 9001, 81, 8026, 5433, 101
 ```
 
 ## Urls for access project's componets
 ```bash
-http://your_vm_ip/    #adminSystem
-http://your_vm_ip:100/    #userSystem
-http://your_vm_ip:125/    #mailhog)
+http://your_vm_ip/8001    #adminSystem
+http://your_vm_ip:9001/    #userSystem
+http://your_vm_ip:8026/    #mailhog)
 ```
 
 ## Deploy your project with kubernates
