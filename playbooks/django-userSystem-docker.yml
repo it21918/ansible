@@ -75,7 +75,7 @@
     lineinfile:
       dest: "{{app_dir}}/userSystem/userSystem/settings.py"
       regexp: "^ALLOWED_HOSTS ="
-      line: "ALLOWED_HOSTS = ['{{ipify_public_ip}}', 'localhost','127.0.1.1']"
+      line: "ALLOWED_HOSTS = ['{{ipify_public_ip}}', 'localhost','127.0.0.1']"
       state: present
   
   
