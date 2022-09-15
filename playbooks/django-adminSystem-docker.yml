@@ -5,7 +5,7 @@
     app_dir: "{{user_dir}}/adminSystem"
     user_dir: "/home/it21906"
     git_repo_url: "https://github.com/it21918/django_adminSystem.git"
-    git_repo_branch: "main"
+    git_repo_branch: "docker_django_adminSystem"
 
   tasks:
 
