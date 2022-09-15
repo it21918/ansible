@@ -101,8 +101,8 @@
         virtualenv: "{{app_dir}}/myvenv"
         virtualenv_python: python3
         
-    - name: give rights
-      shell: chmod +x {{app_dir}}/userSystem/manage.py
+#     - name: give rights
+#       shell: chmod +x {{app_dir}}/userSystem/manage.py
 
     - name: make migrations
       django_manage:
