@@ -84,7 +84,11 @@
     args:
       chdir: /home/it21906/userSystem
 
-
+  - name: Start Mailhog
+    command: systemctl start mailhog
+    become: yes
+    become_user: root
+      
   - name: mailhog set_up
     command: microk8s.kubectl apply -f k8s/django/mailhog.yaml
     args:
