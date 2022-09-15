@@ -90,6 +90,9 @@
     args:
       chdir: /home/it21906/userSystem
       
+  - name: fix readonly
+    shell : "chown it21906 db.sqlite3"
+      
          
   - name: Restart
     ansible.builtin.reboot:
