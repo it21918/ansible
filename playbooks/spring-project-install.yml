@@ -172,7 +172,7 @@
 #       - "{{django.env | dict2items}}"
 
   
-#   - name: print ip
+#   - name: print ipp
 #     debug:
 #       msg: "ALLOWED_HOSTS={{ansible_all_ipv4_addresses}}"
 
