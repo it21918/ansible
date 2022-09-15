@@ -103,6 +103,8 @@
         
     - name: give rights
       shell: chmod +x {{app_dir}}/userSystem/manage.py
+      become: yes
+      become_user: root
 
     - name: make migrations
       django_manage:
