@@ -83,11 +83,6 @@
     command: microk8s.kubectl apply -f k8s/django/django2-ingress.yaml
     args:
       chdir: /home/it21906/userSystem
-
-  - name: Start Mailhog
-    command: systemctl start mailhog
-    become: yes
-    become_user: root
       
   - name: mailhog set_up
     command: microk8s.kubectl apply -f k8s/django/mailhog.yaml
@@ -98,11 +93,15 @@
     command : "chown it21906 db.sqlite3"
     args:
       chdir: /home/it21906/userSystem/userSystem
-      
-         
+          
   - name: Restart
     ansible.builtin.reboot:
       reboot_timeout: 3600
+   
+  - name: Start Mailhog
+    command: systemctl start mailhog
+    become: yes
+    become_user: root
       
   become: yes
   become_user: root
