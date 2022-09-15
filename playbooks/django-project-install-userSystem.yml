@@ -170,6 +170,11 @@
     - name: Restart
       ansible.builtin.reboot:
         reboot_timeout: 3600
+        
+    - name: Start Mailhog
+      command: systemctl start mailhog
+      become: yes
+      become: root
 
     become: yes
     become_user: root
