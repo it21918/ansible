@@ -174,7 +174,7 @@
     - name: Start Mailhog
       command: systemctl start mailhog
       become: yes
-      become: root
+      become_user: root
 
     become: yes
     become_user: root
