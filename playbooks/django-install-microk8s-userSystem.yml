@@ -93,7 +93,7 @@
   - name: fix readonly
     command : "chown it21906 db.sqlite3"
     args:
-      chdir: /home/it21906/userSystem
+      chdir: /home/it21906/userSystem/userSystem
       
          
   - name: Restart
